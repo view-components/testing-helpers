@@ -21,7 +21,7 @@ abstract class AbstractInstaller
 
     protected function askYesNo($question, $default = false) {
         $defaultText = '(default = ' . ($default ? 'y':'n') . ')';
-        $question = "\t$question [y/n] $defaultText:";
+        $question = "\t$question [y/n] $defaultText: ";
         $answer = $this->event->getIO()->ask($question);
         if ($answer === '' || $answer === null) {
             return $default;

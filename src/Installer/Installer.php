@@ -7,11 +7,18 @@ class Installer extends AbstractInstaller
 {
     protected function useExampleEnv()
     {
-        $envFile = "$this->installerDir/.env.example";
-        echo "\r\n\t Copying $envFile to \"$this->projectDir/.env\"\r\n";
-        copy($envFile, "$this->projectDir/.env");
+
+
+        $data = $this->readEnv("$this->installerDir/.env.example");
+        $this->writeEnv("$this->projectDir/.env", $data);
+
     }
-    protected function parseEnv($filePath)
+
+    /**
+     * @param $filePath
+     * @return array
+     */
+    protected function readEnv($filePath)
     {
         $exampleEnvLines = file($filePath);
         $data = [];
@@ -33,6 +40,14 @@ class Installer extends AbstractInstaller
         return $out;
     }
 
+    protected function writeEnv($path, $values)
+    {
+        echo "\t Creating \"$path\"... ";
+        $body = $this->buildEnv($values);
+        file_put_contents($path, $body);
+        echo 'Done.', PHP_EOL;
+    }
+
     protected function bootstrap()
     {
         include_once __DIR__ . '/../../bootstrap/bootstrap.php';
@@ -40,13 +55,13 @@ class Installer extends AbstractInstaller
     protected function configureEnv()
     {
 
-        $data = $this->parseEnv("$this->installerDir/.env.example");
-        $envBody  = $this->buildEnv($this->askValues($data));
-        if (!$this->askYesNo("\r\n Configured values:\r\n$envBody. Use it [y] or repeat process[n]?  (default: y)", true)) {
+        $data = $this->readEnv("$this->installerDir/.env.example");
+        $envData = $this->askValues($data);
+        $envBody  = "\t\t" . str_replace("\n", "\n\t\t", $this->buildEnv($envData));
+        if (!$this->askYesNo("Configured values:\r\n$envBody\r\n\t Is it ok?", true)) {
             $this->configureEnv();
         } else {
-            file_put_contents("$this->projectDir/.env", $envBody);
-            echo "\r\n\t\"$this->projectDir/.env\" file created.\r\n";
+            $this->writeEnv("$this->projectDir/.env", $envData);
         }
     }
     public function run()
@@ -69,12 +84,12 @@ class Installer extends AbstractInstaller
         $this->bootstrap();
         $this->createDatabase();
         finish:
-        echo "\r\nDone.\r\n";
+        echo "Installation finished.\r\n";
     }
 
     protected function createDatabase()
     {
-        echo "Initializing Database...\r\n";
+        echo "\tInitializing Database... ";
         $pdo = \ViewComponents\TestingHelpers\dbConnection();
         $sql = file_get_contents($this->installerDir . '/fixtures/db.sql');
         $sql = str_replace('DB_NAME', getenv('DB_NAME'), $sql);
@@ -98,7 +113,7 @@ class Installer extends AbstractInstaller
                 die();
             }
         }
-        echo "Done Initializing Database...\r\n";
+        echo "Done.", PHP_EOL;
     }
 }
 
