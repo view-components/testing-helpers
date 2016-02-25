@@ -7,16 +7,24 @@ class Installer extends AbstractInstaller
 {
     protected function useExampleEnv()
     {
-        $data = $this->readEnv("$this->installerDir/.env.example");
-        $this->createEnv($data);
+        $data = $this->readExampleEnv();
+
+        $this->createEnv($this->provideEnvDefaults($data));
     }
 
+    protected function provideEnvDefaults($values)
+    {
+        if ($this->projectDir !== $this->installerDir) {
+            $values['WEB_SERVER_DOCROOT'] = 'vendor/view-components/testing-helpers/public';
+        }
+        return $values;
+    }
     /**
-     * @param $filePath
      * @return array
      */
-    protected function readEnv($filePath)
+    protected function readExampleEnv()
     {
+        $filePath = "$this->installerDir/.env.example";
         $exampleEnvLines = file($filePath);
         $data = [];
         foreach ($exampleEnvLines as $line) {
@@ -32,7 +40,7 @@ class Installer extends AbstractInstaller
     {
         $out = '';
         foreach ($data as $key => $value) {
-            $out.= "$key=$value" . PHP_EOL;
+            $out .= "$key=$value" . PHP_EOL;
         }
         return $out;
     }
@@ -50,23 +58,25 @@ class Installer extends AbstractInstaller
     {
         include_once __DIR__ . '/../../bootstrap/bootstrap.php';
     }
+
     protected function configureEnv()
     {
 
-        $data = $this->readEnv("$this->installerDir/.env.example");
+        $data = $this->provideEnvDefaults($this->readExampleEnv());
         $envData = $this->askValues($data);
-        $envBody  = "\t\t" . str_replace("\n", "\n\t\t", $this->buildEnv($envData));
+        $envBody = "\t\t" . str_replace("\n", "\n\t\t", $this->buildEnv($envData));
         if (!$this->askYesNo("Configured values:\r\n$envBody\r\n\t Is it ok?", true)) {
             $this->configureEnv();
         } else {
             $this->createEnv($envData);
         }
     }
+
     public function run()
     {
         if (file_exists("$this->projectDir/.env")) {
             if (false === $this->askYesNo('Application already installed. Reinstall?', false)) {
-               goto finish;
+                goto finish;
             };
         }
         start:
@@ -91,7 +101,7 @@ class Installer extends AbstractInstaller
         $pdo = \ViewComponents\TestingHelpers\dbConnection();
         $sql = file_get_contents($this->installerDir . '/fixtures/db.sql');
         $sql = str_replace('DB_NAME', getenv('DB_NAME'), $sql);
-        foreach(explode(';', $sql) as $query) {
+        foreach (explode(';', $sql) as $query) {
             if (!trim($query)) {
                 continue;
             }
@@ -99,7 +109,8 @@ class Installer extends AbstractInstaller
             if (\ViewComponents\TestingHelpers\isSQLite() && (
                     strpos($query, 'DATABASE') !== false
                     || strpos($query, 'USE ') !== false
-                )) {
+                )
+            ) {
                 continue;
             }
             try {
