@@ -7,11 +7,8 @@ class Installer extends AbstractInstaller
 {
     protected function useExampleEnv()
     {
-
-
         $data = $this->readEnv("$this->installerDir/.env.example");
-        $this->writeEnv("$this->projectDir/.env", $data);
-
+        $this->createEnv($data);
     }
 
     /**
@@ -40,8 +37,9 @@ class Installer extends AbstractInstaller
         return $out;
     }
 
-    protected function writeEnv($path, $values)
+    protected function createEnv($values)
     {
+        $path = "$this->projectDir/.env";
         echo "\t Creating \"$path\"... ";
         $body = $this->buildEnv($values);
         file_put_contents($path, $body);
@@ -61,7 +59,7 @@ class Installer extends AbstractInstaller
         if (!$this->askYesNo("Configured values:\r\n$envBody\r\n\t Is it ok?", true)) {
             $this->configureEnv();
         } else {
-            $this->writeEnv("$this->projectDir/.env", $envData);
+            $this->createEnv($envData);
         }
     }
     public function run()
