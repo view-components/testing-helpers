@@ -1,0 +1,53 @@
+{
+    "name": "view-components/testing-helpers",
+    "description": "Helpers for view-components testing",
+    "keywords": [
+        "laravel",
+        "laravel-5",
+        "laravel5",
+        "laravel4",
+        "laravel-4"
+    ],
+    "homepage": "https://github.com/view-components/testing-helpers",
+    "type": "library",
+    "license": "MIT",
+    "authors": [
+        {
+            "name": "Vitalii [Nayjest] Stepanenko",
+            "email": "mail@vitaliy.in",
+            "role": "Developer"
+        }
+    ],
+    "require": {
+        "php": ">=5.4.0",
+        "phpunit/phpunit": "^5",
+        "filp/whoops": "~1",
+        "vlucas/phpdotenv" : "~1",
+        "ext-curl": "*",
+        "guzzlehttp/guzzle": "*",
+        "silex/silex": "~2.0@dev",
+        "nayjest/str-case-converter": "^1"
+    },
+    "require-dev": {
+        "view-components/view-components": "*"
+    },
+    "autoload": {
+        "psr-4": {
+            "ViewComponents\\TestingHelpers\\": "src/"
+        }
+    },
+    "support": {
+        "email": "mail@vitaliy.in",
+        "source": "https://github.com/view-components/testing-helpers",
+        "issues": "https://github.com/view-components/testing-helpers/issues"
+    },
+    "bin": [
+        "serve"
+    ],
+    "scripts": {
+        "post-install-cmd": [
+            "ViewComponents\\TestingHelpers\\Installer\\Installer::postComposerInstall"
+        ]
+    },
+    "minimum-stability": "dev"
+}

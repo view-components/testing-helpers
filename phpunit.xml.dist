@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<phpunit bootstrap="bootstrap/tests_bootstrap.php"
+         colors="true"
+         convertErrorsToExceptions="true"
+         convertNoticesToExceptions="true"
+         convertWarningsToExceptions="true"
+         stopOnFailure="false"
+         syntaxCheck="true"
+>
+    <testsuites>
+        <testsuite name="ViewComponents/TestingHelpers Test Suite">
+            <directory suffix=".php">./test</directory>
+        </testsuite>
+    </testsuites>
+</phpunit>

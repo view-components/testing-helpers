@@ -1,0 +1,13 @@
+#!/usr/bin/env php
+<?php
+namespace ViewComponents\TestingHelpers;
+
+require __DIR__ . '/bootstrap/bootstrap.php';
+
+$host = getenv('WEB_SERVER_HOST');
+$port = getenv('WEB_SERVER_PORT');
+$docRoot = getenv('WEB_SERVER_DOCROOT');
+startServer($host, $port, $docRoot, true);
+if (strtoupper(substr(PHP_OS, 0, 3)) === 'WIN') {
+    popen("start http://$host:$port", 'r');
+}
