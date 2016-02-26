@@ -57,7 +57,8 @@ It consists of data that is seeded to database during installation and same data
 
 ## Installation
 Testing Helpers can be installed via composer. 
-**important**: Do not add `view-components/testing-helpers` to `require` section of composer.json. It must be added to `require-dev` section.
+
+**Important**: Do not add `view-components/testing-helpers` to `require` section of composer.json. It must be added to `require-dev` section.
 
 ## License
 
