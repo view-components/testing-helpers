@@ -6,6 +6,7 @@ use ViewComponents\TestingHelpers\Application\Http\WebServerTestController;
 require __DIR__ . '/bootstrap.php';
 
 $app = new Application();
+$app['debug'] = true;
 $routeGenerator = EasyRouting::instance($app);
 $routeGenerator->make(WebServerTestController::class);
 
