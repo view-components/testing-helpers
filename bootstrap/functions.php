@@ -35,6 +35,16 @@ function isSQLite()
 }
 
 /**
+ * Returns database connection (PDO).
+ *
+ * Connection is shared,
+ * i.e. this function don't creates new connection each time.
+ *
+ * Connection is created using following environment variables:
+ *  - DB_DSN
+ *  - DB_NAME (does not required for SQLite)
+ *  - DB_USER
+ *  - DB_PASSWORD
  * @return PDO
  */
 function dbConnection() {
@@ -42,8 +52,8 @@ function dbConnection() {
     if ($db === null) {
         $dsn = getenv('DB_DSN');
 
-        $selectDb = !isSQLite();
-        if ($selectDb) {
+        $needToSelectDb = !isSQLite();
+        if ($needToSelectDb) {
             $dbName = getenv('DB_NAME');
             $dsn.=";dbname=$dbName";
         }
