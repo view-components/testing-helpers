@@ -39,7 +39,7 @@ abstract class AbstractAcceptanceTest extends PHPUnit_Framework_TestCase
 
     protected function assertPagesWorks(array $uris)
     {
-        foreach($uris as $uri) {
+        foreach ($uris as $uri) {
             $this->assertPageWorks($uri);
         }
     }

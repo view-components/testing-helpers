@@ -30,7 +30,9 @@ class Installer extends AbstractInstaller
         $data = [];
         foreach ($exampleEnvLines as $line) {
             $line = trim($line);
-            if ($line[0] === '#' || empty($line)) continue;
+            if ($line[0] === '#' || empty($line)) {
+                continue;
+            }
             list($key, $value) = explode('=', $line);
             $data[$key] = $value;
         }
@@ -126,4 +128,3 @@ class Installer extends AbstractInstaller
         echo "Done.", PHP_EOL;
     }
 }
-
