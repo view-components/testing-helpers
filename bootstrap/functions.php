@@ -85,7 +85,7 @@ function startServer($host, $port, $docRoot, $keepAlive = true)
         $command = "START /MIN \"testing-web-server\" $command";
         popen($command, 'r');
     } else {
-        $command =  "$command >/dev/null 2>&1 & echo $!";
+        $command =  "$command & echo $!";
         echo "\r\n\t" . "Executing command: $command";
         $output = array();
         exec($command, $output);
