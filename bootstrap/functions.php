@@ -74,7 +74,11 @@ function dbConnection() {
 function startServer($host, $port, $docRoot, $keepAlive = true)
 {
     $pid = null;
-    $command = "php -S $host:$port -t $docRoot";
+    if (!defined('HHVM_VERSION')) {
+        $command = "php -S $host:$port -t $docRoot";
+    } else {
+        $command = "hhvm -m server -p $port -d hhvm.server.source_root=$docRoot";
+    }
     echo PHP_EOL, "Starting webserver ($command)... ";
 
     if (strtoupper(substr(PHP_OS, 0, 3)) === 'WIN') {
