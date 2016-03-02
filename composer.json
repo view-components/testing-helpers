@@ -47,7 +47,8 @@
     "scripts": {
         "post-install-cmd": [
             "ViewComponents\\TestingHelpers\\Installer\\Installer::postComposerInstall"
-        ]
+        ],
+        "test": "phpunit"
     },
     "minimum-stability": "stable"
 }
