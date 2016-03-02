@@ -99,7 +99,7 @@ class Installer extends AbstractInstaller
     {
         echo "\tInitializing Database... ";
         $pdo = \ViewComponents\TestingHelpers\dbConnection();
-        $sql = file_get_contents($this->installerDir . '/fixtures/db.sql');
+        $sql = file_get_contents($this->installerDir . '/resources/fixtures/db.sql');
         $sql = str_replace('DB_NAME', getenv('DB_NAME'), $sql);
         foreach (explode(';', $sql) as $query) {
             if (!trim($query)) {
