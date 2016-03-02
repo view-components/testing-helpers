@@ -47,7 +47,8 @@ function isSQLite()
  *  - DB_PASSWORD
  * @return PDO
  */
-function dbConnection() {
+function dbConnection()
+{
     static $db;
     if ($db === null) {
         $dsn = getenv('DB_DSN');
@@ -55,7 +56,7 @@ function dbConnection() {
         $needToSelectDb = !isSQLite();
         if ($needToSelectDb) {
             $dbName = getenv('DB_NAME');
-            $dsn.=";dbname=$dbName";
+            $dsn .= ";dbname=$dbName";
         }
         $db = new PDO(
             $dsn,
@@ -74,22 +75,22 @@ function dbConnection() {
 function startServer($host, $port, $docRoot, $keepAlive = true)
 {
     $pid = null;
-    if (!defined('HHVM_VERSION')) {
-        $command = "php -S $host:$port -t $docRoot";
-    } else {
-        $command = "hhvm -m server -p $port -d hhvm.server.source_root=$docRoot";
+    if (defined('HHVM_VERSION')) {
+        echo PHP_EOL, 'Skipping server start, HHVM has no built-in web-server', PHP_EOL;
+        return null;
     }
+    $command = "php -S $host:$port -t $docRoot";
     echo PHP_EOL, "Starting webserver ($command)... ";
 
     if (strtoupper(substr(PHP_OS, 0, 3)) === 'WIN') {
         $command = "START /MIN \"testing-web-server\" $command";
         popen($command, 'r');
     } else {
-        $command =  "$command & echo $!";
+        $command = "$command & echo $!";
         echo "\r\n\t" . "Executing command: $command";
         $output = array();
         exec($command, $output);
-        $pid = (int) $output[0];
+        $pid = (int)$output[0];
         echo "\r\n\tOutput: \r\n\t\t" . join("\r\n\t\t", $output);
     }
     echo "\r\n\t Waiting 0.2 seconds...";
@@ -97,7 +98,7 @@ function startServer($host, $port, $docRoot, $keepAlive = true)
 
     if (!$keepAlive) {
         echo "\r\n\t Registering shutdown function...";
-        register_shutdown_function(function() use ($pid){
+        register_shutdown_function(function () use ($pid) {
             stopServer($pid);
         });
     }
@@ -105,7 +106,8 @@ function startServer($host, $port, $docRoot, $keepAlive = true)
     return $pid;
 }
 
-function stopServer($pid) {
+function stopServer($pid)
+{
     echo PHP_EOL, 'Stopping web-server... ';
     if (strtoupper(substr(PHP_OS, 0, 3)) === 'WIN') {
         exec("TASKKILL /FI \"WINDOWTITLE eq testing-web-server\"");

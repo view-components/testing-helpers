@@ -15,6 +15,9 @@ abstract class AbstractAcceptanceTest extends PHPUnit_Framework_TestCase
 
     public function setUp()
     {
+        if (defined('HHVM_VERSION')) {
+            $this->markTestSkipped('Skipping acceptance tests, HHVM has no built-in web-server');
+        }
         $this->baseUri = 'http://' . getenv('WEB_SERVER_HOST') . ':' . getenv('WEB_SERVER_PORT');
         $this->client = new Client([
             'base_uri' => $this->baseUri,
