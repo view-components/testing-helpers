@@ -37,7 +37,7 @@ class EasyRouting
         $exceptions = [
             '__construct',
         ];
-        foreach($methods as $method) {
+        foreach ($methods as $method) {
             if (in_array($method, $exceptions)) {
                 continue;
             }
@@ -54,7 +54,7 @@ class EasyRouting
     {
         $uris = static::getUris($controller);
         $prefix = static::getPrefix($controller);
-        foreach($uris as $method => $uri) {
+        foreach ($uris as $method => $uri) {
             $this->app->get($uri, "$controller::$method");
             if ($method === 'index') {
                 $this->app->get("$prefix", "$controller::$method");

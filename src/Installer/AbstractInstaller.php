@@ -19,8 +19,9 @@ abstract class AbstractInstaller
         $this->installerDir = dirname(dirname(__DIR__));
     }
 
-    protected function askYesNo($question, $default = false) {
-        $defaultText = '(default = ' . ($default ? 'y':'n') . ')';
+    protected function askYesNo($question, $default = false)
+    {
+        $defaultText = '(default = ' . ($default ? 'y' : 'n') . ')';
         $question = "\t$question [y/n] $defaultText: ";
         $answer = $this->event->getIO()->ask($question);
         if ($answer === '' || $answer === null) {
@@ -29,12 +30,13 @@ abstract class AbstractInstaller
         return strtolower($answer) === 'y';
     }
 
-    protected function askValue($question, $default = null) {
+    protected function askValue($question, $default = null)
+    {
         $question = "\t$question";
         if ($default) {
-            $question.= " (default = $default)";
+            $question .= " (default = $default)";
         }
-        $question.=': ';
+        $question .= ': ';
 
         $answer = $this->event->getIO()->ask($question);
         if ($answer === null || $answer === '') {
@@ -46,20 +48,21 @@ abstract class AbstractInstaller
     protected function askValues($requiredValues)
     {
         $answers = [];
-        foreach($requiredValues as $name => $default) {
+        foreach ($requiredValues as $name => $default) {
             $answers[$name] = $this->askValue("Enter $name", $default);
         }
         return $answers;
     }
 
-    protected function askChoose($choices, $default = 1) {
+    protected function askChoose($choices, $default = 1)
+    {
         $question = "\tChoose one (default = $default)";
         $id = 0;
-        foreach($choices as $choice) {
+        foreach ($choices as $choice) {
             $id++;
-            $question.= "\r\n\t\t$id) $choice";
+            $question .= "\r\n\t\t$id) $choice";
         }
-        $question.="\r\n\t: ";
+        $question .= "\r\n\t: ";
         $answer = $this->event->getIO()->ask($question);
         if ($answer === null) {
             $answer = $default;

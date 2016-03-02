@@ -19,6 +19,7 @@ class Installer extends AbstractInstaller
         }
         return $values;
     }
+
     /**
      * @return array
      */
