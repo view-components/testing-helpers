@@ -82,18 +82,22 @@ function startServer($host, $port, $docRoot, $keepAlive = true)
         popen($command, 'r');
     } else {
         $command =  "$command >/dev/null 2>&1 & echo $!";
+        echo "\r\n\t" . "Executing command: $command";
         $output = array();
         exec($command, $output);
         $pid = (int) $output[0];
+        echo "\r\n\tOutput: \r\n\t\t" . join("\r\n\t\t", $output);
     }
+    echo "\r\n\t Waiting 0.2 seconds...";
     usleep(200000); //wait 0.2 seconds
 
     if (!$keepAlive) {
+        echo "\r\n\t Registering shutdown function...";
         register_shutdown_function(function() use ($pid){
             stopServer($pid);
         });
     }
-    echo 'Done.', PHP_EOL;
+    echo PHP_EOL, 'Done.', PHP_EOL;
     return $pid;
 }
 
