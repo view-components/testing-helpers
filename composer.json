@@ -2,11 +2,12 @@
   "name": "view-components/testing-helpers",
   "description": "Helpers for view-components testing",
   "keywords": [
-    "laravel",
-    "laravel-5",
-    "laravel5",
-    "laravel4",
-    "laravel-4"
+    "phpunit",
+    "test",
+    "tests",
+    "testing",
+    "acceptance-tests",
+    "acceptance-testing"
   ],
   "homepage": "https://github.com/view-components/testing-helpers",
   "type": "library",
