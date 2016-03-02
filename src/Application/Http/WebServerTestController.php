@@ -11,7 +11,6 @@ class WebServerTestController
     public function index()
     {
         return self::TEXT;
-
     }
 
     public function layoutDemo()
