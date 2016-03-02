@@ -1,5 +1,8 @@
 # Testing Helpers for ViewComponents
 
+[![Build Status](https://travis-ci.org/view-components/testing-helpers.svg?branch=master)](https://travis-ci.org/view-components/testing-helpers)
+
+
 This repository contains utilities for testing PHP packages of ViewComponents family.
 
 
