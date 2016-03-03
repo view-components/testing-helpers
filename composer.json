@@ -40,7 +40,7 @@
   "support": {
     "email": "mail@vitaliy.in",
     "source": "https://github.com/view-components/testing-helpers",
-    "issues": "https://github.com/view-compon1ents/testing-helpers/issues"
+    "issues": "https://github.com/view-components/testing-helpers/issues"
   },
   "bin": [
     "serve"
