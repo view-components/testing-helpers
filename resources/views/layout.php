@@ -1,7 +1,7 @@
 <?php
 use ViewComponents\ViewComponents\Component\Layout;
-
 /** @var Layout $layout */
+/** @var string $title */
 ?>
 <html>
 <head>
@@ -11,10 +11,9 @@ use ViewComponents\ViewComponents\Component\Layout;
 <body>
 <?= $layout->section('menu') ?>
 <div class="container">
-    <h1>Demo App<?= $title ? "<small>$title</small>" : '' ?></h1>
+    <h1>Demo App<?= $title ? ": <small>$title</small>" : '' ?></h1>
     <?= $layout->mainSection() ?>
 </div>
 <?= $layout->section('footer') ?>
 </body>
 </html>
-
