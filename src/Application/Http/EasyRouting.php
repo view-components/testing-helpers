@@ -27,7 +27,8 @@ class EasyRouting
     public static function getUri($controller, $method)
     {
         $prefix = static::getPrefix($controller);
-        return $prefix . '/' . Str::toSnakeCase($method, '-');
+        $separator = $prefix ? '/' : '';
+        return $prefix . $separator . Str::toSnakeCase($method, '-');
     }
 
     public static function getUris($controller)
