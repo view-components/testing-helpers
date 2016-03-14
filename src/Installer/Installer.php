@@ -94,7 +94,7 @@ class Installer extends AbstractInstaller
         }
         $this->bootstrap();
         $this->createDatabase();
-        $this->publishAssets();
+        //$this->publishAssets();
         finish:
         echo "Installation finished.\r\n";
     }
@@ -129,13 +129,13 @@ class Installer extends AbstractInstaller
         echo "Done.", PHP_EOL;
     }
 
-    protected function publishAssets()
-    {
-        echo "\tPublishing assets... ";
-        \ViewComponents\TestingHelpers\xcopy(
-            PROJECT_DIR . '/vendor/bower-asset',
-            TESTING_HELPERS_DIR . '/public/assets'
-        );
-        echo "Done.", PHP_EOL;
-    }
+//    protected function publishAssets()
+//    {
+//        echo "\tPublishing assets... ";
+//        \ViewComponents\TestingHelpers\xcopy(
+//            PROJECT_DIR . '/vendor/bower-asset',
+//            TESTING_HELPERS_DIR . '/public/assets'
+//        );
+//        echo "Done.", PHP_EOL;
+//    }
 }

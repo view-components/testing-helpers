@@ -1,4 +1,5 @@
 <?php
+// @todo not used now
 $originalConfigPath = PROJECT_DIR . '/vendor/view-components/view-components/resources/config.php';
 $config = require $originalConfigPath;
 $config['js_aliases'] = array_merge($config['js_aliases'], [
