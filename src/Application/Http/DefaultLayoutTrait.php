@@ -38,7 +38,7 @@ trait DefaultLayoutTrait
         return $this
             ->layout()
             ->addChild($view)
-            ->setData(['title' => $title])
+            ->mergeData(['title' => $title])
             ->render();
     }
 }
