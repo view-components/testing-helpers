@@ -19,7 +19,9 @@ trait TimingTrait
      */
     abstract protected function layout();
 
-    public function prepareTiming()
+    private $customTimers = [];
+
+    protected function prepareTiming()
     {
         $layout = $this->layout();
         // start controller action times
@@ -31,5 +33,21 @@ trait TimingTrait
                 'hasControllerActionTime' => true,
             ]
         );
+    }
+
+    protected function startTimer()
+    {
+        PHP_Timer::start();
+    }
+
+    protected function stopTimer($name)
+    {
+        $value = PHP_Timer::secondsToTimeString(PHP_Timer::stop());
+        $data = $this->layout()->getData();
+        if (empty($data['timers'])) {
+            $data['timers'] = [];
+        }
+        $data['timers'][$name] = $value;
+        $this->layout()->mergeData(['timers' => $data['timers']]);
     }
 }
