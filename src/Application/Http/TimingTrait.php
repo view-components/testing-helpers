@@ -21,10 +21,11 @@ trait TimingTrait
 
     public function prepareTiming()
     {
+        $layout = $this->layout();
         // start controller action times
         PHP_Timer::start();
 
-        $this->layout()->mergeData(
+        $layout->mergeData(
             [
                 'bootstrapTime' => PHP_Timer::timeSinceStartOfRequest(),
                 'hasControllerActionTime' => true,
