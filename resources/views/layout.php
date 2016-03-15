@@ -11,7 +11,10 @@ use ViewComponents\ViewComponents\Component\Layout;
 <body>
 <?= $layout->section('menu') ?>
 <div class="container">
-    <h1>Demo App<?= $title ? ": <small>$title</small>" : '' ?></h1>
+    <div style="margin: 10px">
+        <h1>Demo App<?= $title ? "<small> \\\\ $title</small>" : '' ?></h1>
+        <hr/>
+    </div>
     <?= $layout->mainSection() ?>
 </div>
 <?= $layout->section('footer') ?>

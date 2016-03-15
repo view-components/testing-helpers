@@ -5,10 +5,10 @@
         <div>Controller Action Execution Time: <?= PHP_Timer::secondsToTimeString(PHP_Timer::stop()) ?></div>
     <?php endif ?>
 
-    <div>Execution time: <?= PHP_Timer::timeSinceStartOfRequest() ?></div>
+    <div>Execution Time: <?= PHP_Timer::timeSinceStartOfRequest() ?></div>
 
     <?php if (isset($bootstrapTime)): ?>
-        <div>Application Bootstrap time: <?= $bootstrapTime ?></div>
+        <div>Application Bootstrap Time: <?= $bootstrapTime ?></div>
     <?php endif ?>
 
     <?php if (!empty($timers)) foreach ($timers as $name => $value): ?>
