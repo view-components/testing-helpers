@@ -1,23 +1,24 @@
 <style>
-    .menu li {
-        display: inline;
+    .demo-menu>li {
+        display: inline-block;
         padding: 5px;
-        margin: 3px;
+        margin: 1px;
         background-color: #99cb84;
         border-radius: 3px;
     }
 
-    .menu a {
+    .demo-menu>li>a {
         text-decoration: none;
         color: white;
+        font-size: small;
     }
 
-    .menu li:hover {
+    .demo-menu>li:hover {
         background-color: #000000;
     }
 </style>
-<div style="float: right;">
-    <ul class="menu">
+<div style="float: right; margin: 5px">
+    <ul class="demo-menu">
         <?php foreach ($actions as $action): ?>
             <li>
                 <a href='/<?= $action ?>'>
