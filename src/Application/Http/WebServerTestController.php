@@ -7,6 +7,7 @@ class WebServerTestController
     const TEXT = 'testing webserver: ok';
 
     use DefaultLayoutTrait;
+    use TimingTrait;
 
     public function index()
     {
@@ -15,6 +16,7 @@ class WebServerTestController
 
     public function layoutDemo()
     {
+        $this->prepareTiming();
         return $this->page('Layout is ok', 'Layout test');
     }
 }

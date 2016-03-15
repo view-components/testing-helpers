@@ -15,5 +15,6 @@ use ViewComponents\ViewComponents\Component\Layout;
     <?= $layout->mainSection() ?>
 </div>
 <?= $layout->section('footer') ?>
+<?php include __DIR__ . '/timing.php' ?>
 </body>
 </html>
