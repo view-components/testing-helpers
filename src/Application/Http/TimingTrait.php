@@ -1,13 +1,6 @@
 <?php
-/**
- * Created by PhpStorm.
- * User: Vitaliy Stepanenko
- * Date: 15.03.2016
- * Time: 16:19
- */
 
 namespace ViewComponents\TestingHelpers\Application\Http;
-
 
 use PHP_Timer;
 use ViewComponents\ViewComponents\Component\Layout;
