@@ -43,14 +43,16 @@
     "issues": "https://github.com/view-components/testing-helpers/issues"
   },
   "bin": [
-    "serve"
+    "serve",
+    "uninstall"
   ],
   "scripts": {
     "post-install-cmd": [
       "ViewComponents\\TestingHelpers\\Installer\\Installer::postComposerInstall"
     ],
     "test": "php vendor/phpunit/phpunit/phpunit",
-    "serve": "php serve"
+    "serve": "php serve",
+    "uninstall": "php uninstall"
   },
   "minimum-stability": "stable"
 }

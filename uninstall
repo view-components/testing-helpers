@@ -1,0 +1,21 @@
+#!/usr/bin/env php
+<?php
+namespace ViewComponents\TestingHelpers;
+
+require __DIR__ . '/bootstrap/bootstrap.php';
+
+function deleteDir($path) {
+    return is_file($path) ?
+        @unlink($path) :
+        array_map(__FUNCTION__, glob($path.'/*')) == @rmdir($path);
+}
+
+echo PHP_EOL, "Uninstalling Package...", PHP_EOL;
+unlink(PROJECT_DIR . '/.env');
+unlink(PROJECT_DIR . '/composer.lock');
+if (file_exists(PROJECT_DIR . '/db.sqlite')) {
+    unlink(realpath(PROJECT_DIR . '/db.sqlite'));
+}
+deleteDir(PROJECT_DIR . '/vendor');
+
+echo PHP_EOL, "Done.", PHP_EOL;
