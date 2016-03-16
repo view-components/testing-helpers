@@ -94,19 +94,10 @@ class Installer extends AbstractInstaller
         }
         $this->bootstrap();
         $this->createDatabase();
-        $this->navigateToProjectDir();
         finish:
         echo "Installation finished.\r\n";
     }
-    protected function navigateToProjectDir()
-    {
-        if (PROJECT_DIR === getcwd()) {
-            return;
-        }
-        $cmd = 'cd "' . PROJECT_DIR . '"';
-        echo "\tNavigating to project folder, command: $cmd.\r\n";
-        echo system($cmd);
-    }
+
     protected function createDatabase()
     {
         echo "\tInitializing Database... ";
