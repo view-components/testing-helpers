@@ -21,7 +21,7 @@
     <ul class="demo-menu">
         <?php foreach ($actions as $action): ?>
             <li>
-                <a href='/<?= $action ?>'>
+                <a href='/index.php/<?= $action ?>'>
                     <?= $action ?>
                 </a>
             </li>
