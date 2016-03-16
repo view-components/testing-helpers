@@ -10,7 +10,7 @@ matrix:
     - php: nightly
 before_script:
   - travis_retry composer self-update
-  - travis_retry composer install --no-interaction --prefer-source
+  - travis_retry composer create-project --prefer-source --no-interaction
 
 script:
   - vendor/bin/phpcs --standard=psr2 src/

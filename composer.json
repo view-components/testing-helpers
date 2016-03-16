@@ -47,7 +47,7 @@
     "uninstall"
   ],
   "scripts": {
-    "post-install-cmd": [
+    "post-create-project-cmd": [
       "ViewComponents\\TestingHelpers\\Installer\\Installer::postComposerInstall"
     ],
     "test": "php vendor/phpunit/phpunit/phpunit",
