@@ -24,14 +24,14 @@
     "phpunit/phpunit": "^4||^5",
     "vlucas/phpdotenv": "~1",
     "ext-curl": "*",
-    "ext-pdo_sqlite" : "*",
     "guzzlehttp/guzzle": "*",
     "silex/silex": "~1.3",
     "nayjest/str-case-converter": "^1"
   },
   "require-dev": {
     "view-components/view-components": "~0.22.1",
-    "squizlabs/php_codesniffer": "~2.3"
+    "squizlabs/php_codesniffer": "~2.3",
+    "ext-pdo_sqlite" : "*"
   },
   "autoload": {
     "psr-4": {
