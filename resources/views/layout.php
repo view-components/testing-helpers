@@ -6,18 +6,18 @@ use ViewComponents\ViewComponents\Component\Layout;
 <html>
 <head>
     <title><?= $title ?></title>
-    <?= $layout->section('head') ?>
+    <?= $layout->section('head')->render() ?>
 </head>
 <body>
-<?= $layout->section('menu') ?>
+<?= $layout->section('menu')->render() ?>
 <div class="container">
     <div style="margin: 10px">
         <h1>Demo App<?= $title ? "<small> \\\\ $title</small>" : '' ?></h1>
         <hr/>
     </div>
-    <?= $layout->mainSection() ?>
+    <?= $layout->mainSection()->render() ?>
 </div>
-<?= $layout->section('footer') ?>
+<?= $layout->section('footer')->render() ?>
 <?php include __DIR__ . '/timing.php' ?>
 </body>
 </html>
