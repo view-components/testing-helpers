@@ -3,10 +3,9 @@ use Silex\Application;
 use ViewComponents\TestingHelpers\Application\Http\EasyRouting;
 use ViewComponents\TestingHelpers\Application\Http\WebServerTestController;
 use ViewComponents\ViewComponents\Rendering\RendererInterface;
-use ViewComponents\ViewComponents\Rendering\SimpleRenderer;
 use ViewComponents\ViewComponents\Service\Bootstrap;
 use ViewComponents\ViewComponents\Service\ServiceContainer;
-use ViewComponents\ViewComponents\Service\ServiceName;
+use ViewComponents\ViewComponents\Service\ServiceId;
 use Symfony\Component\Debug\ErrorHandler;
 use Symfony\Component\Debug\ExceptionHandler;
 
