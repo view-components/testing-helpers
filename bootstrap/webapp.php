@@ -40,13 +40,8 @@ if (!$hasAdditionalControllers) {
 
 Bootstrap::registerServiceProvider(function (ServiceContainer $container) {
     // register views path
-    $container->extend(ServiceName::RENDERER, function (RendererInterface $renderer) {
-        if (!$renderer instanceof SimpleRenderer) {
-            throw new Exception(
-                "Only SimpleRenderer is supported, current: " . get_class($renderer)
-            );
-        }
-        $renderer->registerViewsPath(TESTING_HELPERS_DIR . '/resources/views');
+    $container->extend(ServiceId::RENDERER, function (RendererInterface $renderer) {
+        $renderer->getFinder()->registerPath(TESTING_HELPERS_DIR . '/resources/views');
         return $renderer;
     });
 });
