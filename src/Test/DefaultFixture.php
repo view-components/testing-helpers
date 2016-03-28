@@ -1,6 +1,7 @@
 <?php
 
 namespace ViewComponents\TestingHelpers\Test;
+
 use Nayjest\Collection\Extended\ObjectCollection;
 
 class DefaultFixture
@@ -18,7 +19,7 @@ class DefaultFixture
     public static function getObjects()
     {
         $objects = [];
-        foreach(self::getArray() as $arrayItem) {
+        foreach (self::getArray() as $arrayItem) {
             $objects[] = (object)$arrayItem;
         }
         return $objects;
