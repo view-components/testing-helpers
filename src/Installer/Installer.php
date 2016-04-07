@@ -6,10 +6,8 @@ class Installer extends AbstractInstaller
     public function run()
     {
         if ($this->isInstalled()) {
-            if (
-                $this->event->getName() === 'post-update-cmd'
-                || false === $this->askYesNo('Application already installed. Reinstall?', false)
-            ) {
+            $isPostUpdate = $this->event->getName() === 'post-update-cmd';
+            if ($isPostUpdate || !$this->askYesNo('Application already installed. Reinstall?')) {
                 goto finish;
             };
         }
