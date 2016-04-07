@@ -5,6 +5,29 @@ use Composer\Script\Event;
 
 class Installer extends AbstractInstaller
 {
+    public function run()
+    {
+        if ($this->isInstalled()) {
+            if (false === $this->askYesNo('Application already installed. Reinstall?', false)) {
+                goto finish;
+            };
+        }
+        start:
+        $answer = $this->askChoose([
+            'Use default configuration, see .env.example file',
+            'Configure'
+        ]);
+        if ($answer == 1) {
+            $this->useExampleEnv();
+        } else {
+            $this->configureEnv();
+        }
+        $this->bootstrap();
+        $this->createDatabase();
+        finish:
+        echo "Installation finished.\r\n";
+    }
+
     protected function useExampleEnv()
     {
         $data = $this->readExampleEnv();
@@ -75,27 +98,9 @@ class Installer extends AbstractInstaller
         }
     }
 
-    public function run()
+    protected function isInstalled()
     {
-        if (file_exists("$this->projectDir/.env")) {
-            if (false === $this->askYesNo('Application already installed. Reinstall?', false)) {
-                goto finish;
-            };
-        }
-        start:
-        $answer = $this->askChoose([
-            'Use default configuration, see .env.example file',
-            'Configure'
-        ]);
-        if ($answer == 1) {
-            $this->useExampleEnv();
-        } else {
-            $this->configureEnv();
-        }
-        $this->bootstrap();
-        $this->createDatabase();
-        finish:
-        echo "Installation finished.\r\n";
+        return file_exists("$this->projectDir/.env");
     }
 
     protected function createDatabase()

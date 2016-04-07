@@ -12,6 +12,14 @@ abstract class AbstractInstaller
     protected $projectDir;
     protected $installerDir;
 
+    abstract public function run();
+
+    public static function postComposerInstall(Event $event)
+    {
+        $installer = new static($event);
+        $installer->run();
+    }
+
     public function __construct(Event $event)
     {
         $this->event = $event;
@@ -73,13 +81,5 @@ abstract class AbstractInstaller
             $this->askChoose($choices);
         }
         return $answer;
-    }
-
-    abstract public function run();
-
-    public static function postComposerInstall(Event $event)
-    {
-        $installer = new static($event);
-        $installer->run();
     }
 }
