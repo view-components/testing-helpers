@@ -14,7 +14,7 @@ abstract class AbstractInstaller
 
     abstract public function run();
 
-    public static function postComposerInstall(Event $event)
+    public static function runFromComposer(Event $event)
     {
         $installer = new static($event);
         $installer->run();

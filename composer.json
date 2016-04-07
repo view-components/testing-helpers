@@ -50,7 +50,10 @@
   ],
   "scripts": {
     "post-create-project-cmd": [
-      "ViewComponents\\TestingHelpers\\Installer\\Installer::postComposerInstall"
+      "ViewComponents\\TestingHelpers\\Installer\\Installer::runFromComposer"
+    ],
+    "post-update-cmd": [
+      "ViewComponents\\TestingHelpers\\Installer\\Installer::runFromComposer"
     ],
     "test": "php vendor/phpunit/phpunit/phpunit",
     "serve": "php serve",

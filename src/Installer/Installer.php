@@ -1,14 +1,15 @@
 <?php
 namespace ViewComponents\TestingHelpers\Installer;
 
-use Composer\Script\Event;
-
 class Installer extends AbstractInstaller
 {
     public function run()
     {
         if ($this->isInstalled()) {
-            if (false === $this->askYesNo('Application already installed. Reinstall?', false)) {
+            if (
+                $this->event->getName() === 'post-update-cmd'
+                || false === $this->askYesNo('Application already installed. Reinstall?', false)
+            ) {
                 goto finish;
             };
         }
