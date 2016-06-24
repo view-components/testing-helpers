@@ -31,7 +31,7 @@
     "squizlabs/php_codesniffer": "~2.3"
   },
   "require-dev": {
-    "view-components/view-components": "^0.23.0",
+    "view-components/view-components": "*",
     "ext-pdo_sqlite" : "*"
   },
   "autoload": {
